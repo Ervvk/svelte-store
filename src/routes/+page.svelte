@@ -21,10 +21,12 @@
 
 <style lang="scss">
 	.table-box {
+		margin: 0 auto;
 		padding: 5rem;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		max-width: 60vw;
 	}
 	.table-header {
 		display: flex;

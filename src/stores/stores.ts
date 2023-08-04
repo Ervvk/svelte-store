@@ -1,18 +1,18 @@
 import { writable } from 'svelte/store';
-import type { UserDetails } from '../types';
-import { getUsers } from '../api/users';
+import type { Store } from '../types';
+import { getStores } from '../api/stores';
 
-function createUsers() {
-	const { subscribe, set } = writable<UserDetails[] | null>(null);
+function createStores() {
+	const { subscribe, set } = writable<Store[] | null>(null);
 
 	return {
 		subscribe,
 		reload: async () => {
-			const usersData = await getUsers();
-			set(usersData);
+			const storesData = await getStores();
+			set(storesData);
 		},
 		reset: () => set(null)
 	};
 }
 
-export const users = createUsers();
+export const stores = createStores();

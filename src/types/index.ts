@@ -2,10 +2,12 @@ export interface BaseEntity {
 	id: number;
 }
 
-export interface User extends BaseEntity {
+export interface NewUser {
 	username: string;
 	store_id: number;
 }
+
+export interface User extends BaseEntity, NewUser {}
 
 export interface UserDetails extends User {
 	store_name: string;

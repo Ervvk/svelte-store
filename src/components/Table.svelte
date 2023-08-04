@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { DataTable, Pagination } from 'carbon-components-svelte';
-	import { users } from '../stores/stores';
+	import { users } from '../stores/users';
 
 	const headers = [
 		{ key: 'username', value: 'Username' },
 		{ key: 'store_name', value: 'Store' },
-		{ value: 'Actions', key: 'actions' }
+		{ key: 'actions', value: 'Actions' }
 	];
 
 	const pageSizes = [5, 10, 15];

@@ -1,6 +1,9 @@
 <script>
 	import { Button } from 'carbon-components-svelte';
 	import Table from '../components/Table.svelte';
+	import UserEditionDialog from '../components/UserEditionDialog.svelte';
+	import { isDialogOpen } from '../stores/dialog';
+	import { Toaster } from 'svelte-french-toast';
 </script>
 
 <svelte:head
@@ -13,11 +16,13 @@
 <div class="table-box">
 	<div class="table-header">
 		<h1>User List</h1>
-		<Button kind="secondary">Add new user</Button>
+		<Button on:click={() => isDialogOpen.open()} kind="secondary">Add new user</Button>
 	</div>
 
 	<Table />
 </div>
+<UserEditionDialog />
+<Toaster />
 
 <style lang="scss">
 	.table-box {

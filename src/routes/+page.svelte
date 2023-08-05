@@ -13,24 +13,23 @@
 	/></svelte:head
 >
 
-<div class="table-box">
+<div class="table-wrapper">
 	<div class="table-header">
 		<h1>User List</h1>
 		<Button on:click={() => isDialogOpen.open()} kind="secondary">Add new user</Button>
 	</div>
-
 	<Table />
 </div>
 <UserEditionDialog />
 <Toaster />
 
 <style lang="scss">
-	.table-box {
-		margin: 0 auto;
-		padding: 5rem;
+	.table-wrapper {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		margin: 0 auto;
+		padding: 5rem;
 		max-width: 60vw;
 	}
 	.table-header {

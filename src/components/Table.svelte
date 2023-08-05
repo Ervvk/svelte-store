@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { DataTable, Pagination } from 'carbon-components-svelte';
-	import { users } from '../stores/users';
+	import { selectedUser, users } from '../stores/users';
+	import type { DataTableRow } from 'carbon-components-svelte/types/DataTable/DataTable.svelte';
+	import { isDialogOpen } from '../stores/dialog';
 
 	const headers = [
 		{ key: 'username', value: 'Username' },
@@ -16,14 +18,21 @@
 	onMount(async () => {
 		users.reload();
 	});
+
+	const editUser = (row: any) => {
+		isDialogOpen.open();
+		selectedUser.set(row);
+	};
+
+	const deleteUser = (userID: number) => {};
 </script>
 
 {#if $users}
-	<DataTable sortable {headers} rows={$users} {pageSize} {page}>
+	<DataTable {headers} sortable rows={$users} {pageSize} {page}>
 		<svelte:fragment slot="cell" let:row let:cell>
 			{#if cell.key === 'actions'}
-				<button class="table-button">Edit</button>
-				<button class="table-button">Delete</button>
+				<button on:click={() => editUser(row)} class="table-button">Edit</button>
+				<button on:click={() => deleteUser(row.id)} class="table-button">Delete</button>
 			{:else}
 				{cell.value}
 			{/if}
@@ -31,7 +40,7 @@
 	</DataTable>
 	<Pagination {pageSizes} bind:pageSize bind:page totalItems={$users.length} />
 {:else}
-	<p>No data</p>
+	<p>Wait for data</p>
 {/if}
 
 <style lang="scss">

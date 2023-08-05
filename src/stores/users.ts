@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { UserDetails } from '../types';
+import type { User, UserDetails } from '../types';
 import { getUsers } from '../api/users';
 
 function createUsers() {
@@ -15,4 +15,20 @@ function createUsers() {
 	};
 }
 
+function createSelectedUser() {
+	const initialState = {
+		id: 0,
+		username: '',
+		store_id: 1
+	};
+
+	const { subscribe, set } = writable<User>(initialState);
+	return {
+		subscribe,
+		set: (user: User) => set(user),
+		reset: () => set(initialState)
+	};
+}
+
 export const users = createUsers();
+export const selectedUser = createSelectedUser();

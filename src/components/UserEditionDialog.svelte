@@ -2,6 +2,12 @@
 	import { Modal } from 'carbon-components-svelte';
 	import { isDialogOpen } from '../stores/dialog';
 	import UserEditionForm from './UserEditionForm.svelte';
+	import { selectedUser } from '../stores/users';
+
+	const handleDialogClose = () => {
+		isDialogOpen.close();
+		selectedUser.reset();
+	};
 </script>
 
 <Modal
@@ -9,9 +15,8 @@
 	open={$isDialogOpen}
 	modalHeading="Create user"
 	selectorPrimaryFocus="#db-name"
-	on:click:button--secondary={() => isDialogOpen.close()}
 	on:open
-	on:close={() => isDialogOpen.close()}
+	on:close={handleDialogClose}
 >
 	<UserEditionForm />
 </Modal>

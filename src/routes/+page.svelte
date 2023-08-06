@@ -1,9 +1,10 @@
 <script>
 	import { Button } from 'carbon-components-svelte';
 	import Table from '../components/Table.svelte';
-	import UserEditionDialog from '../components/UserEditionDialog.svelte';
+	import UserEditionDialog from '../components/user-edition/UserEditionDialog.svelte';
 	import { isDialogOpen } from '../stores/dialog';
 	import { Toaster } from 'svelte-french-toast';
+	import Add from 'carbon-icons-svelte/lib/Add.svelte';
 </script>
 
 <svelte:head
@@ -16,7 +17,7 @@
 <div class="table-wrapper">
 	<div class="table-header">
 		<h1>User List</h1>
-		<Button on:click={() => isDialogOpen.open()} kind="secondary">Add new user</Button>
+		<Button on:click={() => isDialogOpen.open()} kind="secondary" icon={Add}>Add new user</Button>
 	</div>
 	<Table />
 </div>
@@ -27,13 +28,17 @@
 	.table-wrapper {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: var(--space-xs);
 		margin: 0 auto;
-		padding: 5rem;
-		max-width: 60vw;
+		padding: var(--space-xl);
+		max-width: 90rem;
 	}
 	.table-header {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+	}
+	h1 {
+		font-size: 2rem;
 	}
 </style>

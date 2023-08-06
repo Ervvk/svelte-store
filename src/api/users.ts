@@ -45,3 +45,17 @@ export async function editUser(user: User) {
 		return null;
 	}
 }
+
+export async function deleteUser(userId: number) {
+	try {
+		const { status, error } = await supabase.from('users').delete().eq('id', userId);
+
+		if (error) {
+			throw error;
+		}
+		return status;
+	} catch (error) {
+		console.error('Error creating the user:');
+		return null;
+	}
+}

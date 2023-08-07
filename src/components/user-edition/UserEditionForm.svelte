@@ -18,13 +18,17 @@
 		stores.reload();
 	});
 
-	let errorMessage = '';
-
 	let formValues = cloneObject(defaultUser);
 
 	const resetFormValues = () => {
 		formValues = cloneObject(defaultUser);
 	};
+
+	let errorMessage = '';
+
+	$: {
+		if (!$isDialogOpen) errorMessage = '';
+	}
 
 	//the values ​​differ only if a row has been selected for editing, so we set the form values ​​to the edited user details
 	$: {
